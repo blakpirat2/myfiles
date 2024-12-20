@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+<base target="_top">
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+.row {
+    border-radius: 40px;
+    height:100%;
+}
+
+/* Create two equal columns that floats next to each other */
+.columnOne {    
+    float: left;
+    width: 45%;
+    padding: 30px; 
+    height: 100%;
+    font-family: 'Courier New', monospace;
+    background-color:#aaa;
+    text-align:center;
+    font-family: 'Courier New', monospace;
+}
+
+.columnTwo {
+    float: left;
+    width: 55%;
+    padding: 30px; 
+    height: 100%;
+    font-family: 'Courier New', monospace;
+}
+    
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+figure {
+    border: 5px double white;
+    border-radius: 30px;
+    width: 95%;
+    padding: 5px 35px;
+    margin: 40px auto;
+    background-color: white;
+}
+
+audio {
+    width: 85%;
+    padding:0;
+    margin:0;
+}
+
+button {
+    font-family: 'Courier New', monospace;
+    border: 1px solid black;
+    border-radius: 20px;
+    background-color: black;
+    color: white;
+    padding: 3px 0px;
+    width:100%;
+	text-align: center;
+	justify-content: center;
+	align-content: center;
+}
+
+.playback {
+	display: inline-flex;
+	text-align: center;
+	justify-content: center;
+	align-content: center;
+	white-space: pre-line;
+	margin: 0 auto;
+	padding: 20px;
+	width: 15%;
+	height: 75px;
+	border: 0px solid black;
+}
+
+button:hover {
+	color: black;
+	background-color: white;
+	border: 1px solid black;
+}
+
+#lyric {
+    margin: 20px 20px 0px 30px;
+    padding: 25px 0px;
+}
+
+.forFont {
+    font-family: 'Courier New', monospace;
+    font: monospace;
+}
+
+.p1 {
+    font-family: 'Courier New', monospace;
+    font: monospace;
+}
+
+span.s1 {
+    font: monospace;
+    font-family: "Courier New", monospace;
+    font-kerning: none;
+    font-size: 14px;
+}
+    
+ul {
+    border: 5px solid black;
+	list-style-type: none;
+	padding-left: 0;
+    }
+    
+li {
+    border: thin solid black;
+    padding: 7.5px;
+	list-style-type: none;
+    }
+
+li:first-child:hover {
+	color: inherit;
+	background-color:inherit;;
+	}	
+	
+li:hover {
+    color: white;
+    background-color: black;
+    }
+    
+audio::-webkit-media-controls-panel {
+	background-color:goldenrod;
+	opacity:1.0;
+	}
+	
+audio::-webkit-media-controls-mute-button {
+	display: none;
+	opacity: 1.0;
+	background-color: darkviolet;
+	border-radius: 50%;
+	}
+	
+audio::-webkit-media-controls-volume-slider-container {
+	display: none;
+	margin: auto 0;
+}
+	
+audio::-webkit-media-controls-volume-slider {
+	display: none;
+	margin: auto 0;
+	padding: 0;
+	}
+	
+audio::-webkit-media-controls-play-button {
+	opacity: 1.0;
+	background-color: darkviolet;
+	border-radius: 50%;
+	}
+	
+audio::-webkit-media-controls-timeline-container {
+	display: block;
+	color: white;
+	border-radius: 50%;
+	}
+	
+audio::-webkit-media-controls-current-time-display {
+	color: white;
+	border-radius: 50%;
+	}
+	
+audio::-webkit-media-controls-time-remaining-display {
+	color: white;	
+	}
+	
+audio::-webkit-media-controls-timeline {
+	display: block;
+	color: white;	
+	}
+
+audio::-webkit-media-controls-seek-back-button {
+	color: white;	
+}
+	
+audio::-webkit-media-controls-seek-forward-button {
+	color: white;	
+}
+	
+audio::-webkit-media-controls-fullscreen-button {
+	color: white;	
+}
+	
+audio::-webkit-media-controls-rewind-button {
+	color: white;	
+}
+	
+audio::-webkit-media-controls-return-to-realtime-button {
+	color: white;	
+}
+	
+audio::-webkit-media-controls-toggle-closed-captions-button {
+	color: white;	
+}	
+
+</style>
+</head>
+    
+<body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+<script src="/musicPlayerScript.js" defer></script>
+
+<!-- overall header -->  
+<div class="row">
+    
+<!-- left column, list of songs  -->
+<div class="columnOne">
+<h2>songs</h2>
+<ul>
+    
+<figure><audio id="playNow" src="" controls autoplay></audio>
+	<button id="previousTrack" class="playback"><br>prev</button>
+	<button id="nextTrack" class="playback"><br>next</button>
+	<button id="repeatTrack" class="playback">repeat one:<br>no</button>
+	<button id="repeatAll" class="playback">repeat all:<br>no</button>
+	<button id="shuffle" class="playback">shuffle all:<br>no</button>
+	<br><br>
+<input type="range" id="volume-slider" min="0" max="1" value="0.3" step="0.05" />
+<p id="volume-display">Volume: 30%</p>
+<figcaption style="text-align:center;">
+    <button id="musicPlayerTitle">placeholder</button></figcaption></figure>
+    
+    <li class="fullSong" id="audBlood" href="check" src="https://www.dropbox.com/scl/fi/7gkgt5dt92ki0v86d4dmf/blood-2021.mp3?rlkey=6zhp9sjk5vcx6uh87r6obfvsj&st=ac5benx3&dl=1" type="audio/mpeg">blood (conditional pt. 2)</li>
+    <li class="fullSong" id="audObject" src="https://www.dropbox.com/scl/fi/rl2wbjeiy4hjn1hz8mhl4/object-permanence.mp3?rlkey=377ckdbm66kccsat48zzgqus3&st=ah1zvyxm&dl=1" type="audio/mpeg">object permanence</li>
+    <li class="fullSong" id="audKom" src="https://www.dropbox.com/scl/fi/jw2caevh9c68694cmm8b5/kombucha-2021.mp3?rlkey=mfhda58b67cw369ygy0n8x0hl&st=vu8nz8wv&dl=1" type="audio/mpeg">kombucha</li>
+    <li class="fullSong" id="audSprezz" src="https://www.dropbox.com/scl/fi/qxnpu16tdy3kwkydjmzvd/sprezzatura-2023.mp3?rlkey=43t9uykx8cz6ik7s4bo62c4ai&st=5ypxxd15&dl=1" type="audio/mpeg">sprezzatura</li>
+    <li class="fullSong" id="audPerson" src="https://www.dropbox.com/scl/fi/rocdod7slweii4tlpl58x/personal-porn-star-2021.mp3?rlkey=cqht78n6gtwnq7vfc1n6actaw&st=d1ydoorb&dl=1" type="audio/mpeg">personal porn star</li>
+    <li class="fullSong" id="audCond" src="https://www.dropbox.com/scl/fi/fx3ytdoug6i7ha48y8ub6/conditional-remix-2019.mp3?rlkey=hdl1sdocs099p16kp86gz1jvg&st=1swr2ub3&dl=1" type="audio/mpeg">conditional</li>
+    <li class="fullSong" id="audMood" src="https://www.dropbox.com/scl/fi/0ml20ite2j2s9ma38luz7/mood-journal-v2.mp3?rlkey=9uwvmk40ce6h7om5akh23a6es&st=k7vaip2f&dl=1" type="audio/mpeg">mood journal</li>
+    <li class="fullSong" id="audLuka" src="https://www.dropbox.com/scl/fi/b089p4vrmulx3tu7s38ov/luka-doncic-king-of-cups-v3.mp3?rlkey=esilqgvii1eqihx51uknzitpb&st=rj7qm2si&dl=1" type="audio/mpeg">luka doncic (king of cups)</li>
+    <li class="fullSong" id="audSwing" src="https://www.dropbox.com/scl/fi/dlv1216gu8c1upy5zgtj6/swing-along-v1-2011.mp3?rlkey=r1tm1bxg4n4l70qb80vohwmdk&st=twhv5bjw&dl=1" type="audio/mpeg">swing along</li>           
+    <li class="fullSong" id="audSteg" src="https://www.dropbox.com/scl/fi/ks0ok61frljo13fqe8zp7/stegosaurus-2020.mp3?rlkey=oczafxyuya92k51id8xclhzpt&st=20q4k4s1&dl=1" type="audio/mpeg">stegosaurus</li>
+	<li class="fullSong" id="audHexa" src="https://www.dropbox.com/scl/fi/ztlligb7qrvidxobrgaoh/hexagram-23-v3r1.mp3?rlkey=zsppn6v0dor3ex6u4evfjysk3&st=maejwrlg&dl=1" type="audio/mpeg">hexagram 23</li>
+	<li class="fullSong" id="audFirst" src="https://www.dropbox.com/scl/fi/waarwezgushzr4sdm2co4/3837-N-Janssen-Ave-54.m4a?rlkey=z7gufcx1e0b9o206e7cf72cq7&st=0aw6djjf&dl=1" type="audio/mpeg">first house</li>
+<!--<li class="fullSong" id="audCig" src="https://www.dropbox.com/scl/fi/6ks2k7i2tqbvczo4aoyg3/cigars-in-heaven-v5-gonna-play-with-pitch-and-speed.mp3?rlkey=x7pznena6ft256dbphvhbftdq&st=5sesy68c&dl=1" type="audio/mpeg">cigars in heaven</li>
+	<li class="fullSong" id="audElaz" src="https://www.dropbox.com/scl/fi/xzn7v73ce3kvefbpdvxyz/elazoro-v6.mp3?rlkey=vsfo4yj5s3bbo7mlagnmw7mgs&st=1lyjbdu3&dl=1" type="audio/mpeg">elazoro</li>
+	<li class="fullSong" id="audXmas" src="https://www.dropbox.com/scl/fi/icdruu47zgevbkvfw63m3/instrumental-christmas-eve-1-C.mp3?rlkey=rmif1z2n74nf78nosig095vw9&st=f4a7gv1h&dl=1" type="audio/mpeg">christmas eve</li>
+	<li class="fullSong" id="audFaith" src="https://www.dropbox.com/scl/fi/kne3gykhggd6vva8motur/instrumental-have-faith-1-G.mp3?rlkey=rskepkwfi2qi55fwwm22g6uil&st=mtm1xhm9&dl=1" type="audio/mpeg">have faith</li>
+-->
+    </ul>
+</div>   
+
+<!-- right column, lyrics  -->
+<div class="columnTwo" style="background-color:#bbb;font-family: 'Courier New', monospace;">
+<h2 style="text-align:center;" id="songTitle">lyrics</h2>
+<p id="lyric">click a song title </p>
+</div>
+    
+<!-- close the whole table -->
+</div>
+</body>
+</html>
